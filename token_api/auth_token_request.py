@@ -2,6 +2,8 @@ def get_auth_token():
     import requests
     from requests.auth import HTTPBasicAuth 
     import env_lab
+    import urllib3
+    urllib3.disable_warnings()                                  #stops warning due to certificate unverification
     
     auth_api_endpoint = "dna/system/api/v1/auth/token"          #api endpoint/resource for authN
     url = f"{env_lab.DNA_CENTER["host"]}{auth_api_endpoint}"    #url for gx

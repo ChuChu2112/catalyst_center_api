@@ -2,6 +2,8 @@ import requests
 import env_lab
 from auth_token_request import get_auth_token
 import json
+import urllib3
+urllib3.disable_warnings()                          #stops warning due to certificate unverification
 
 endpoint = "dna/intent/api/v1/network-device"       #api resource for requesting device inventory
 url = f"{env_lab.DNA_CENTER["host"]}{endpoint}"     #url for gx
