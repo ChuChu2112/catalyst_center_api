@@ -1,0 +1,20 @@
+import requests
+import env_lab
+from auth_token_request import get_auth_token
+import json
+
+endpoint = "dna/intent/api/v1/network-device"       #api resource for requesting device inventory
+url = f"{env_lab.DNA_CENTER["host"]}{endpoint}"     #url for gx
+header = {                                          #header for get request. contains authorization token
+    "X-auth-token":get_auth_token()
+}
+
+def get_network_inventory():                        #function definition
+    response = requests.get(url, verify=False, headers=header)      #create get request. avoid verification.
+    response = response.json()                                      #convert to python dict.
+    response = json.dumps(response, indent=4)                       #convert to JSON and add indentation
+
+    print(response)                                 #print data
+
+if __name__ == "__main__":
+    get_network_inventory()                         #call function
